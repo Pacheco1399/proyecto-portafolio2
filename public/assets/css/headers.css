@@ -1,0 +1,95 @@
+/* Generales */
+
+*{
+    padding: 0px;                                                                           /* Margen interior de un elemento*/
+    margin: 0px;                                                                            /* Margen exterior de un elemento*/
+    font-family: 'Open Sans',Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: white;
+}
+
+/* HEADER*/
+.header {
+    padding-bottom: 20px;
+}
+
+.header-main {
+    width: 100%;
+    height: 60px;
+    padding: 50px;
+    background-color: #012C56;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.container-login {
+    position: absolute;
+    right: 120px;
+    top: 25px;
+}
+
+.logo {
+    position: absolute;
+    width: 150px;
+    left: 110px;
+    top: 13px;
+  }
+.logo-imagen-duoc {
+    position: absolute;
+    margin: 0 auto;
+    object-fit: contain;
+    width: 300px;
+    left: 280px;
+    top: 10px;
+  }
+
+.icon-admin {
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+  
+  }
+.logo-usuario {
+    margin-right: 20px;
+    float: right;
+    width: 50px;
+    height: 50px;
+  }
+.logo-buzon {
+    margin-right: 20px;
+    float: right;
+    width: 50px;
+    height: 50px;
+  }
+/* HEADER*/
+
+
+
+
+
+
+/* FOOTER*/
+
+.footer {
+    background: #012C56;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.logo-imagen-duoc-footer {
+    margin: 0 auto;
+    object-fit: contain;
+    width: 300px;
+    left: 260px;
+    bottom: 0px;
+    margin-bottom: 10px;
+    left: 0px;
+  }
+  .footer p, h6{
+      color: white;
+  }
+
+ 
+
+/* FOOTER*/

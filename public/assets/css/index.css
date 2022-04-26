@@ -1,0 +1,47 @@
+html,
+body {
+  height: 100%;
+}
+
+header .duoc-header{
+  background-color: #012C56;
+  align-items: center;
+  height: 60px;
+  border: 1px solid #c9c9c9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.logo-pagina{
+  width: 100%;
+  
+}
+.logo-pagina2{
+  width: 100%;
+  right: 0px;
+}
+.logo-imagen{
+  position: relative;
+  width: 100px;
+  left: -66px;
+  top: 0px;
+  z-index: 1;
+}
+.logo-imagen-duoc{
+  position: relative;
+  width: 183px;
+  left: -65px;
+  top: 0px;
+  z-index: 1;
+}
+.a-logo{
+  position: relative;
+  left: 15;
+  top: 0px;
+  z-index: 2;
+  color: white;
+  text-decoration: none;
+}
+.a-logo:hover{
+ 
+  color: red;
+}
