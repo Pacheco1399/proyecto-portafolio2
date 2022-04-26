@@ -1,0 +1,269 @@
+--------------------------------------------------------------------------------------------CODIGO NO UTILIZABLE EN PHPMYADMIN
+--------------------------------------------------------------------------------------------MAS ABAJO DEJE UNO LISTO
+-------------------------------------------------------------------------------------------- DROP TABLE
+
+
+DROP TABLE categoria;
+DROP TABLE escuela;
+DROP TABLE carrera;
+DROP TABLE seccion;
+DROP TABLE usuario;
+DROP TABLE comment;
+DROP TABLE post;
+DROP TABLE votes;
+DROP TABLE error;
+
+
+
+--------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------- CREATE TABLE
+--------------------------------------------------------------------------------------------
+
+
+ 
+
+-------------------------------------------------------------------------------------------- CATEGORIA                                    
+
+CREATE TABLE categoria (
+    id_categoria         NUMBER(2) NOT NULL,
+    nombre               VARCHAR2(4) NOT NULL,
+    descripcion          VARCHAR2(60) NOT NULL,
+    CONSTRAINT categoria_pk PRIMARY KEY ( id_categoria)
+    
+);
+    
+
+-------------------------------------------------------------------------------------------- ESCUELA                               
+
+CREATE TABLE escuela (
+    id_escuela          NUMBER(2) NOT NULL PRIMARY KEY,
+    tittle              VARCHAR2(30) NOT NULL,
+    description         VARCHAR2(30) NOT NULL,
+    CONSTRAINT escuela_pk PRIMARY KEY ( id_escuela)
+    
+    
+);
+
+-------------------------------------------------------------------------------------------- CARRERA                               
+
+CREATE TABLE carrera (
+    id_carrera              NUMBER(2) NOT NULL PRIMARY KEY,
+    id_escuela              NUMBER(2) NOT NULL,
+    tittle                  VARCHAR2(30) NOT NULL,
+    description             VARCHAR2(30) NOT NULL,
+
+    CONSTRAINT carrera_pk PRIMARY KEY ( id_carrera),
+    CONSTRAINT carrera_escuela_fk FOREIGN KEY ( id_escuela )REFERENCES escuela ( id_escuela );
+);
+
+-------------------------------------------------------------------------------------------- SECCION                               
+CREATE TABLE seccion (
+    id_seccion          NUMBER(2) NOT NULL PRIMARY KEY,
+    id_carrera              NUMBER(2) NOT NULL,
+    tittle              VARCHAR2(30) NOT NULL,
+    description         VARCHAR2(30) NOT NULL,
+
+    CONSTRAINT seccion_pk PRIMARY KEY ( id_seccion),
+    CONSTRAINT seccion_carrera_fk FOREIGN KEY ( id_carrera )REFERENCES carrera ( id_carrera );
+);
+
+-------------------------------------------------------------------------------------------- USUARIO                                 
+
+CREATE TABLE usuario (
+    id_usuario           NUMBER(2) NOT NULL PRIMARY KEY,
+    id_seccion           NUMBER(2) NOT NULL,
+    username             VARCHAR2(10) NOT NULL,
+    password             VARCHAR2(15) NOT NULL,
+    mail                 VARCHAR2(30) NOT NULL,
+    phone                NUMBER(10)    NOT NULL,
+    tipo_user            NUMBER(10)    NOT NULL, 
+
+
+    CONSTRAINT usuario_pk PRIMARY KEY ( id_usuario), 
+    FOREIGN KEY (id_seccion) REFERENCES seccion (id_seccion); 
+    
+);
+
+ -------------------------------------------------------------------------------------------- COMMENT
+
+CREATE TABLE comment (
+    id_comment          NUMBER(4) NOT NULL PRIMARY KEY,
+    id_usuario          NUMBER(4) NOT NULL,
+    id_post             NUMBER(4) NOT NULL ,
+    id_seccion          NUMBER(4) NOT NULL,
+    tittle              VARCHAR2(30) NOT NULL,
+    description         VARCHAR2(30) NOT NULL,
+
+    CONSTRAINT comment_pk PRIMARY KEY ( id_comment), 
+    CONSTRAINT comment_usuario_fk FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario),
+    CONSTRAINT comment_post_fk FOREIGN KEY (id_post) REFERENCES seccion (id_post), 
+    CONSTRAINT comment_seccion_fk FOREIGN KEY (id_seccion) REFERENCES seccion (id_seccion), 
+             
+);
+
+ -------------------------------------------------------------------------------------------- POST
+
+CREATE TABLE post (
+    id_post             NUMBER(4) NOT NULL PRIMARY KEY,
+    id_usuario          NUMBER(4) NOT NULL,
+    id_comment          NUMBER(4) NOT NULL,
+    tittle              VARCHAR2(30) NOT NULL,
+    description         VARCHAR2(30) NOT NULL,
+    created             DATE(Timestamp),
+
+    CONSTRAINT post_pk PRIMARY KEY ( id_post), 
+    CONSTRAINT post_usuario_fk FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario),
+    CONSTRAINT post_comment_fk FOREIGN KEY (id_comment) REFERENCES comment (id_comment), 
+
+
+             
+);
+
+ -------------------------------------------------------------------------------------------- VOTES (LIKES)
+
+CREATE TABLE votes (
+    id_votes             NUMBER(4) NOT NULL PRIMARY KEY,
+    id_usuario          NUMBER(4) NOT NULL,
+    id_post          NUMBER(4) NOT NULL,
+    id_comment          NUMBER(4) NOT NULL,
+    up_count          NUMBER(4) NOT NULL,
+    down_count          NUMBER(4) NOT NULL,
+    
+
+    CONSTRAINT votes_pk PRIMARY KEY ( id_votes), 
+    CONSTRAINT votes_usuario_fk FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario),
+    CONSTRAINT votes_post_fk FOREIGN KEY (id_post) REFERENCES post (id_post),
+    CONSTRAINT votes_comment_fk FOREIGN KEY (id_comment) REFERENCES comment (id_comment),
+
+             
+);
+
+
+
+ -------------------------------------------------------------------------------------------- TABLA ERROR 
+ 
+    CREATE TABLE ERROR (
+    id_error                NUMBER(3),
+    RUTINE                  VARCHAR2(100),
+    ERROR                   VARCHAR2(100)  
+);
+
+
+--------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------- CODIGO PARA UTILIAZR EN PHPMYADMIN 
+--------------------------------------------------------------------------------------------
+
+
+
+
+                             
+
+CREATE TABLE category (
+    id_category         INT(2) NOT NULL,
+    tittle              VARCHAR(30) NOT NULL,
+    description         VARCHAR(30) NOT NULL,
+
+    CONSTRAINT categoria_pk PRIMARY KEY ( id_category)
+    
+);
+    
+CREATE TABLE escuela (
+    id_escuela          INT(2) NOT NULL,
+    tittle              VARCHAR(30) NOT NULL,
+    description         VARCHAR(30) NOT NULL,
+
+    CONSTRAINT escuela_pk PRIMARY KEY ( id_escuela)
+);
+
+CREATE TABLE carrera (
+    id_carrera              INT(2) NOT NULL,
+    id_escuela              INT(2) NOT NULL,
+    tittle                  VARCHAR(30) NOT NULL,
+    description             VARCHAR(30) NOT NULL,
+
+    CONSTRAINT carrera_pk PRIMARY KEY ( id_carrera),
+    CONSTRAINT carrera_escuela_fk FOREIGN KEY ( id_escuela )REFERENCES escuela ( id_escuela )
+);
+                             
+CREATE TABLE seccion (
+    id_seccion          INT(2) NOT NULL,
+    id_carrera          INT(2) NOT NULL,
+    tittle              VARCHAR(30) NOT NULL,
+    description         VARCHAR(30) NOT NULL,
+
+    CONSTRAINT seccion_pk PRIMARY KEY ( id_seccion),
+    CONSTRAINT seccion_carrera_fk FOREIGN KEY ( id_carrera )REFERENCES carrera ( id_carrera )
+);
+                                
+CREATE TABLE usuario (
+    id_usuario           INT(2) NOT NULL,
+    id_seccion           INT(2) NOT NULL,
+    username             VARCHAR(10) NOT NULL,
+    password             VARCHAR(15) NOT NULL,
+    mail                 VARCHAR(30) NOT NULL,
+    phone                INT(10)    NOT NULL,
+    tipo_user            INT(10)    NOT NULL, 
+
+    CONSTRAINT usuario_pk PRIMARY KEY ( id_usuario), 
+    FOREIGN KEY (id_seccion) REFERENCES seccion (id_seccion) 
+);
+
+
+CREATE TABLE comment (
+    id_comment          INT(4) NOT NULL,
+    id_usuario          INT(4) NOT NULL,
+    id_post             INT(4) NOT NULL ,
+    id_seccion          INT(4) NOT NULL,
+    tittle              VARCHAR(30) NOT NULL,
+    description         VARCHAR(30) NOT NULL,
+
+    CONSTRAINT comment_pk PRIMARY KEY ( id_comment), 
+    CONSTRAINT comment_usuario_fk FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario), 
+    CONSTRAINT comment_seccion_fk FOREIGN KEY (id_seccion) REFERENCES seccion (id_seccion) 
+);
+
+
+CREATE TABLE post (
+    id_post             INT(4) NOT NULL,
+    id_usuario          INT(4) NOT NULL,
+    id_comment          INT(4) NOT NULL,
+    id_category         INT(4) NOT NULL,
+    tittle              VARCHAR(30) NOT NULL,
+    description         VARCHAR(30) NOT NULL,
+    created             DATE,
+
+    CONSTRAINT post_pk PRIMARY KEY ( id_post), 
+    CONSTRAINT post_usuario_fk FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario),
+    CONSTRAINT post_comment_fk FOREIGN KEY (id_comment) REFERENCES comment (id_comment),
+    CONSTRAINT post_category_fk FOREIGN KEY (id_category) REFERENCES category (id_category)
+);
+
+CREATE TABLE votes (
+    id_votes           INT(4) NOT NULL,
+    id_usuario         INT(4) NOT NULL,
+    id_post            INT(4) NOT NULL,
+    id_comment         INT(4) NOT NULL,
+    up_count          INT(4) NOT NULL,
+    down_count          INT(4) NOT NULL,
+
+    CONSTRAINT votes_pk PRIMARY KEY ( id_votes), 
+    CONSTRAINT votes_usuario_fk FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario),
+    CONSTRAINT votes_post_fk FOREIGN KEY (id_post) REFERENCES post (id_post),
+    CONSTRAINT votes_comment_fk FOREIGN KEY (id_comment) REFERENCES comment (id_comment)
+);
+
+CREATE TABLE ERROR (
+    id_error                INT(3),
+    RUTINE                  VARCHAR(100),
+    ERROR                   VARCHAR(100),  
+
+    CONSTRAINT error_pk PRIMARY KEY ( id_error)
+);
+
+ALTER TABLE comment
+   ADD CONSTRAINT comment_post_fk FOREIGN KEY (id_post) REFERENCES post (id_post);
+
+
+
+
+
