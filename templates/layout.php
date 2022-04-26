@@ -22,7 +22,7 @@
     <div class="container"> <!-- CONTAINER GENERAL-->
         <?php include 'landing/vista-header/header.php' ?>
         <?php include 'landing/vista-contenido-principal/vista-user/principal.php' ?>
-        <h1>rarara</h1>
+        <h1>Que sucde realmente</h1>
         <?php include 'landing/vista-footer/footer.php' ?> 
     </div>    
 
